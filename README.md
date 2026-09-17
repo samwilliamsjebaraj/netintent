@@ -12,7 +12,8 @@ Intent-driven network configuration and operations toolkit.
 - Link subnets that are not /31 (RFC 3021), or that overlap
 - Links to unknown devices, self-loops, and interfaces used by more than one link
 - Loopbacks that fall inside a link subnet
-- Leaf-to-leaf links in a Clos fabric
+- Same-tier links (spine-to-spine, leaf-to-leaf) in a 3-stage Clos fabric
+- Links between two devices in the same AS, which cannot form an eBGP session
 - Invalid or reserved ASNs, and unknown fields
 
 Spines may share an ASN, as in the RFC 7938 design.
