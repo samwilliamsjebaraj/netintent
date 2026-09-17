@@ -1,0 +1,12 @@
+# Two spines, two leaves, eBGP Clos (RFC 7938 style: spines share an ASN, each leaf has its own).
+name: lab-fabric
+devices:
+  - {name: spine1, role: spine, asn: 65000, loopback: 10.0.0.1/32}
+  - {name: spine2, role: spine, asn: 65000, loopback: 10.0.0.2/32}
+  - {name: leaf1,  role: leaf,  asn: 65101, loopback: 10.0.0.11/32}
+  - {name: leaf2,  role: leaf,  asn: 65102, loopback: 10.0.0.12/32}
+links:
+  - {a: {device: spine1, interface: eth1}, b: {device: leaf1, interface: eth1}, subnet: 10.1.0.0/31}
+  - {a: {device: spine1, interface: eth2}, b: {device: leaf2, interface: eth1}, subnet: 10.1.0.2/31}
+  - {a: {device: spine2, interface: eth1}, b: {device: leaf1, interface: eth2}, subnet: 10.1.0.4/31}
+  - {a: {device: spine2, interface: eth2}, b: {device: leaf2, interface: eth2}, subnet: 10.1.0.6/31}

@@ -1,0 +1,59 @@
+[project]
+name = "netintent"
+version = "0.0.1"
+description = "Intent-driven network configuration and operations toolkit"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Sam Williams Jebaraj" }]
+keywords = ["network automation", "intent-based networking", "clos", "bgp", "source of truth"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: System Administrators",
+  "Intended Audience :: Telecommunications Industry",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Networking",
+  "Typing :: Typed",
+]
+dependencies = [
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+]
+
+[project.urls]
+Repository = "https://github.com/samwilliamsjebaraj/netintent"
+Issues = "https://github.com/samwilliamsjebaraj/netintent/issues"
+
+[project.scripts]
+netintent = "netintent.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "mypy>=1.10",
+  "ruff>=0.5",
+  "types-PyYAML",
+]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
