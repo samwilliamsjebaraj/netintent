@@ -107,11 +107,6 @@ class Fabric(_Strict):
             for d in self.devices:
                 if d.loopback.ip in link.subnet:
                     errors.append(f"loopback of {d.name} falls inside link subnet {link.subnet}")
-
-            # a, b = by_name.get(link.a.device), by_name.get(link.b.device)
-            # if a and b and a.role == b.role == Role.LEAF:
-            #     errors.append(f"leaf-to-leaf link {a.name}-{b.name} is not valid in a Clos fabric")
-
             a, b = by_name.get(link.a.device), by_name.get(link.b.device)
             if a and b:
                 if a.role == b.role and a.role in (Role.SPINE, Role.LEAF):

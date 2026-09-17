@@ -43,9 +43,11 @@ def test_spines_may_share_asn() -> None:
     data["devices"].append({"name": "s2", "role": "spine", "asn": 65000, "loopback": "10.0.0.2/32"})
     Fabric.model_validate(data)
 
+
 def add_spine_to_spine_link(d: Data) -> None:
     d["devices"].append({"name": "s2", "role": "spine", "asn": 65000, "loopback": "10.0.0.2/32"})
     d["links"].append(link("s1", "e2", "s2", "e1", "10.1.0.2/31"))
+
 
 CASES: list[tuple[Callable[[Data], None], str]] = [
     (lambda d: d["devices"][0].update(loopback="10.0.0.1/24"), "must be a /32"),
